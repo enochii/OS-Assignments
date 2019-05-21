@@ -19,7 +19,7 @@ public class AllocatorView extends JFrame {
     MTable table = null;
     RequestTable requestTable = null;
     //0 表示首次适应算法， 1 表示最佳适应算法
-    int algorithm = 1;
+    int algorithm = 0;
     Allocator allocator = null;
 
     // TODO: 做个显示请求的table
@@ -52,6 +52,7 @@ public class AllocatorView extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     algorithm = index;
+                    resetAll();
                     System.out.println(index);
                 }
             });
@@ -110,6 +111,8 @@ public class AllocatorView extends JFrame {
         this.add(table);
         this.add(new JScrollPane(table));//滑动条
 
+        //
+        resetAll();
 
         this.setVisible(true);
 //        this.setResizable(false);
@@ -182,9 +185,9 @@ class MTable extends BaseTable{
         setLayout(null);
 
         String[][] blocks = {
-                {"0", "640KB", "0"},
-                {"0", "640KB", "0"},
-                {"0", "640KB", "0"},
+//                {"0", "640KB", "0"},
+//                {"0", "640KB", "0"},
+//                {"0", "640KB", "0"},
         };
         model = new DefaultTableModel(blocks, attrs);
         this.setModel(model);
@@ -229,11 +232,14 @@ class MTable extends BaseTable{
         if(blockList==null){
             System.out.println("???");
         }
-        System.out.println(blockList.size());
+//        System.out.println(blockList.size());
         Iterator<Block> it = blockList.iterator();
         while (it.hasNext()){
             Block record = it.next();
-            System.out.println(""+record.startAddr+ ""+record.blockSize);
+            if(record.startAddr<0||record.blockSize<=0){
+                continue;//处理哨兵节点
+            }
+//            System.out.println(""+record.startAddr+ ""+record.blockSize);
             model.addRow(new String[]{""+record.startAddr, ""+record.blockSize, ""+record.jobIndex});
         }
     }
@@ -246,9 +252,9 @@ class RequestTable extends BaseTable{
     String [] attrs = {"请求"};
 
     String[][] requests = {
-            {"Job 1 release 100K"},
-            {"Job 1 release 100K"},
-            {"Job 1 release 100K"},
+//            {"Job 1 release 100K"},
+//            {"Job 1 release 100K"},
+//            {"Job 1 release 100K"},
     };
     RequestTable(){
         super();
