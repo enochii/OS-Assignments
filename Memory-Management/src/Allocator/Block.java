@@ -20,21 +20,21 @@ public class Block {
         this.blockSize = blockSize;
     }
 
-    public int getBlockSize() {
-        return blockSize;
-    }
-
-    public int getJobIndex() {
-        return jobIndex;
-    }
-
-    public void setJobIndex(int jobIndex) {
-        this.jobIndex = jobIndex;
-    }
-
-    public int getStartAddr() {
-        return startAddr;
-    }
+//    public int getBlockSize() {
+//        return blockSize;
+//    }
+//
+//    public int getJobIndex() {
+//        return jobIndex;
+//    }
+//
+//    public void setJobIndex(int jobIndex) {
+//        this.jobIndex = jobIndex;
+//    }
+//
+//    public int getStartAddr() {
+//        return startAddr;
+//    }
 
     //分割内存块，第一部分是剩下来的，第二部分是分配出去的
     public static Block[] splitBlock(@NotNull Block ori, int requiredSize){

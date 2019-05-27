@@ -151,6 +151,8 @@ public class AllocatorView extends JFrame {
         }else {
             assert false;
         }
+
+        //更新表格数据
         table.updateBlocks(allocator.algorithm.getEmptyList(),allocator.algorithm.getBusyList());
     }
     //Run till the end

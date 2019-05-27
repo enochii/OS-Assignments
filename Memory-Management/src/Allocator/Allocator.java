@@ -205,7 +205,7 @@ class bestFit extends fitInstance{
 }
 
 public class Allocator {
-    fitAlgorithm algorithm;
+    fitAlgorithm algorithm;//适应算法
 
     public void setAlgorithm(fitAlgorithm algorithm){
         this.algorithm =algorithm;
